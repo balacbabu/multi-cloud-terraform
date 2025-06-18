@@ -50,14 +50,6 @@ jobs:
       working-directory: ${{ env.TF_WORKING_DIR }}
       run: terraform plan -input=false
 
-    - name: Create PR comment with plan
-      if: github.event_name == 'pull_request'
-      uses: marocchino/sticky-pull-request-comment@v2
-      with:
-        path: plan.txt
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
   manual_approval:
     needs: terraform
     runs-on: ubuntu-latest
